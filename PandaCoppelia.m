@@ -18,8 +18,15 @@ while true
     if t >= 15; break; end
     fprintf('Simulation time: %.2f [s]\n', t);
     position = sim.getObjectPosition(target,-1);
+    
+    % move the target handle
+    sim.setObjectPosition(target,[0.4,0,0.4],-1)
+    sim.setObjectQuaternion(target,[-1.0,0,0.0,0.0],-1)
+    
+    % move to zeroPosition
+    % panda.setJointTargetPosition([0,0,0,0,0,0,0]);
 
-    panda.setJointTargetPosition([0,0,0,0,0,0,0]);
+    % move joints using finalPosition, generated from peter corke code (PandaRobot.m)
     % panda.setJointTargetPosition(finalPosition);
 
     sim.step();
